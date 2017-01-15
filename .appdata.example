@@ -1,0 +1,24 @@
+# Application environment variables
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:9000/
+APP_CHARSET=UTF-8
+
+# Database environment variables
+DB_DRIVER=mysqli
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=ci_project
+DB_USERNAME=root
+DB_PASSWORD=secret
+DB_PREFIX=
+DB_ENGINE=InnoDB
+
+# Email environment variables
+MAIL_DRIVER=smtp
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+
