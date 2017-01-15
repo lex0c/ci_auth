@@ -134,7 +134,7 @@ if(!function_exists('ie_support_field')) {
     }
 }
 
-if (! function_exists('csrf_field')) {
+if(!function_exists('csrf_field')) {
     /**
      * Generate CSRF token form.
      *
@@ -152,3 +152,25 @@ if (! function_exists('csrf_field')) {
     }
 }
 
+if(!function_exists('auth_data')) {
+    /**
+     * Returns some data from the current user.
+     *
+     * @return object
+     */
+    function auth_data()
+    {
+        require_once (dirname(__DIR__) . '/libraries/Auth.php');
+        $auth = new Auth();
+
+        if($auth->isAuthenticated()) {
+            $obj = new stdClass();
+            $obj->id = $auth->get_user_data()['auth_user_id'];
+            $obj->name = $auth->get_user_data()['auth_user_name'];
+            $obj->lastname = $auth->get_user_data()['auth_user_lastname'];
+            $obj->email = $auth->get_user_data()['auth_user_email'];
+
+            return $obj;
+        }
+    }
+}

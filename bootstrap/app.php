@@ -151,6 +151,7 @@ switch (ENVIRONMENT)
  * NO TRAILING SLASH!
  */
 	$view_folder = dirname(__DIR__) . '/template/views';
+    $view_compiled = dirname(__DIR__) . '/application/cache/compileds/views';
 
 
 /*

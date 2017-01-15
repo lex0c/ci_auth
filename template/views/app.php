@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300"/>
-    <link rel="stylesheet" href="<?= asset('css/app.min.css') ?>"/>
+    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}"/>
 
     <style>
         html, body {
@@ -60,17 +60,17 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     <?php if(!$this->auth->isAuthenticated()): ?>
-                    <li><a href="<?= route('/login') ?>">Login</a></li>
+                    <li><a href="{{ route('/login') }}">Login</a></li>
                     <li><a href="#">Register</a></li>
                     <?php else: ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <?= $this->session->name ?> <span class="caret"></span>
+                            {{ auth_data()->name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="#">Logout</a>
+                                <a href="{{ route('/logout') }}">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -81,11 +81,11 @@
     </nav>
 
     <div class="center">
-        <div class="title">Olá! <?= $this->session->name ?></div>
+        <div class="title">Olá! {{ auth_data()->name }}</div>
     </div>
 
 </div>
 </body>
-    <script src="<?= asset('js/jquery.min.js') ?>"></script>
-    <script src="<?= asset('js/bootstrap.min.js') ?>"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </html>

@@ -2,9 +2,9 @@ CREATE TABLE users (
     id INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     lastname VARCHAR(100) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rememberToken VARCHAR(100),
+    token VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 

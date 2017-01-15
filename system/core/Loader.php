@@ -48,6 +48,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/libraries/loader.html
  */
+
+require_once ('ViewEngine.php');
+
 class CI_Loader {
 
 	// All these are set automatically. Don't mess with them.
@@ -486,7 +489,7 @@ class CI_Loader {
 	 */
 	public function view($view, $vars = array(), $return = FALSE)
 	{
-		return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
+	    return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
 	}
 
 	// --------------------------------------------------------------------
@@ -898,7 +901,11 @@ class CI_Loader {
 			{
 				if (file_exists($_ci_view_file.$_ci_file))
 				{
-					$_ci_path = $_ci_view_file.$_ci_file;
+				    // Rendering view, now...
+				    $viewEngine = new CI_ViewEngine();
+				    $compiled = $viewEngine->compiler($_ci_view_file.$_ci_file, $_ci_view_file, $_ci_file);
+
+					$_ci_path = $compiled;
 					$file_exists = TRUE;
 					break;
 				}

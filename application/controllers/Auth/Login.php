@@ -9,6 +9,7 @@ class Login extends CI_Controller
      * @var string
      */
     protected $redirectIfAuthenticated = 'home';
+    protected $redirectIfNotAuthenticated = 'welcome';
 
     /**
      * Create a new controller instance.
@@ -63,6 +64,15 @@ class Login extends CI_Controller
         } else {
             redirect($this->redirectIfAuthenticated);
         }
+    }
+
+    public function logout()
+    {
+        if($this->auth->isAuthenticated()) {
+            $this->auth->logout($this->redirectIfNotAuthenticated);
+        }
+
+        redirect($this->redirectIfNotAuthenticated);
     }
 
 }

@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * PHP Encrypter
- * Safety against scripts injections
  * Generates an encrypted hash of 108 byte
  * @link https://github.com/lleocastro/php-encrypter
  * @license https://github.com/lleocastro/php-encrypter/blob/master/LICENSE
@@ -17,21 +16,21 @@ class Hash
      * @see http://www.php.net/security/crypt_blowfish.php
      * @var string
      */
-    private $prefix = '2a';
+    protected $prefix = '2a';
 
     /**
      * Salt [MTc2MzMxNDQ4NTdmZDg4Yz]
      * @see http://www.php.net/security/crypt_blowfish.php
      * @var string
      */
-    private $salt = '';
+    protected $salt = '';
 
     /**
      * Custo default '8' [4 <> 31]
      * @see http://www.php.net/security/crypt_blowfish.php
      * @var int
      */
-    private $cust = 8;
+    protected $cust = 8;
 
     /**
      * Encrypter Factory
@@ -40,14 +39,11 @@ class Hash
      * @param string $salt
      * @param string $cust
      */
-    public function __construct($prefix='', $salt='', $cust='')
+    public function __construct($prefix = '', $salt = '', $cust = '')
     {
-        $p = (string) trim(htmlentities(strip_tags($prefix)));
-        $s = (string) trim(htmlentities(strip_tags($salt)));
-        $c = (int)    htmlentities(strip_tags($cust));
-        $this->prefix = ($p==''?$this->prefix='2a':$this->prefix=$p);
-        $this->salt   = ($s==''?$this->salt=$this->generateHash():$this->salt=$s);
-        $this->cust   = ($c==''?$this->cust='8':$this->cust=$c);
+        $this->prefix = ($prefix == '' ? $this->prefix='2a' : $this->prefix = $prefix);
+        $this->salt   = ($salt   == '' ? $this->salt = $this->generateHash() : $this->salt = $salt);
+        $this->cust   = ($cust   == '' ? $this->cust='8' : $this->cust = $cust);
     }
 
     /**
@@ -102,7 +98,7 @@ class Hash
      *
      * @return string
      */
-    private function generateHash()
+    protected function generateHash()
     {
         return sprintf('$%s$%02d$%s$', $this->prefix, $this->cust, $this->generateSalt());
     }
@@ -118,7 +114,7 @@ class Hash
     protected function inverse($encryptedData)
     {
         return base64_encode(strrev(
-                substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData),strlen($encryptedData)).
+                substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData), strlen($encryptedData)).
                 substr($encryptedData, 0, (strlen($encryptedData)/2)-strlen($encryptedData)))
         );
     }

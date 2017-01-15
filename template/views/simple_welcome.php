@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300"/>
-    <link rel="stylesheet" href="<?= asset('css/app.min.css') ?>"/>
+    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}"/>
 
     <style>
         html, body {
@@ -31,7 +31,7 @@
         }
     </style>
 
-    <?= ie_support_field() ?>
+    {{ ie_support_field() }}
 
     <title>Started</title>
 </head>
